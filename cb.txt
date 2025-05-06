@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+string toLower(string str) {
+    transform(str.begin(), str.end(), str.begin(), ::tolower);
+    return str;
+}
+
+void reply(string ui) {
+    ui = toLower(ui);
+
+    if (ui.find("course") != string::npos) {
+        cout << "We offer BTech, MTech, MBA, and MCA programs in various disciplines.\n";
+    }
+    else if (ui.find("admission") != string::npos) {
+        cout << "Admissions are based on the CAP process.\n";
+    }
+    else if (ui.find("exit") != string::npos || ui.find("bye") != string::npos) {
+        cout << "Goodbye! Feel free to reach out anytime.\n";
+        exit(0);
+    }
+    else if (ui.find("help") != string::npos) {
+        cout << "You can ask about 'courses', 'admission', or say 'bye' to exit.\n";
+    }
+    else {
+        cout << "I'm sorry, I can't help with that.\n";
+    }
+}
+
+int main() {
+    cout << "=== Chatbot Inquiry System ===\n";
+    cout << "Type your question (e.g., 'Tell me about courses') or type 'bye' to exit.\n\n";
+
+    string ui;
+    while (true) {
+        cout << "You: " << flush;
+        getline(cin, ui);
+        reply(ui);
+        cout << endl;
+    }
+
+    return 0;
+}
